@@ -1,0 +1,51 @@
+{% extends 'inc/nav.html' %} {% load static %} {% block content %}
+<h1 class="text-center mt-4">Tasks</h1>
+{% comment %} <button type="button" class="btn btn-primary mt-3 mb-4 add">Add task
+</button> {% endcomment %}
+{% block css %}
+<style>
+  .add{
+
+  }
+</style>
+{% endblock css %}
+<a href="{% url 'addtask' %}" class="btn btn-primary mt-3 mb-4">Add task</a>
+<div class="container">
+  <div class="row">
+    {% for task in tasks %}
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <img src="{{ task.image.url }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ task.task_name }}</h5>
+          <p class="card-text">{{ task.task_desc }}</p>
+          <a href="#" class="btn btn-primary">View</a>
+          <a href="#" class="btn btn-warning">Edit</a>
+          <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card-deck">
+  {% for task in tasks %}
+  <div class="card">
+    <img
+      class="card-img-top h-100 d-flex align-items-center"
+      src="{{ task.image.url }}"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ task.task_name }}</h5>
+      <p class="card-text">{{ task.task_desc }}</p>
+      <a href="#" class="btn btn-primary">View</a>
+      <a href="#" class="btn btn-warning">Edit</a>
+      <a href="#" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
