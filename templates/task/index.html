@@ -1,16 +1,25 @@
 {% extends 'inc/nav.html' %} {% load static %} {% block content %}
 <h1 class="text-center mt-4">Tasks</h1>
-{% comment %} <button type="button" class="btn btn-primary mt-3 mb-4 add">Add task
-</button> {% endcomment %}
-{% block css %}
-<style>
-  .add{
-
-  }
-</style>
-{% endblock css %}
-<a href="{% url 'addtask' %}" class="btn btn-primary mt-3 mb-4">Add task</a>
+{% block css %} {% endblock css %}
 <div class="container">
+  <a href="{% url 'addtask' %}" class="btn btn-primary mt-3 mb-4"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-plus-circle"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+      />
+      <path
+        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+      />
+    </svg>
+    Add task</a
+  >
   <div class="row">
     {% for task in tasks %}
     <div class="col-sm-6 col-md-4">
@@ -19,33 +28,59 @@
         <div class="card-body">
           <h5 class="card-title">{{ task.task_name }}</h5>
           <p class="card-text">{{ task.task_desc }}</p>
-          <a href="#" class="btn btn-primary">View</a>
-          <a href="#" class="btn btn-warning">Edit</a>
-          <a href="#" class="btn btn-danger">Delete</a>
+          <a href="{% url 'viewtask' task_id=task.id %}" class="btn btn-primary"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-eye-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path
+                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+              /></svg
+            > View</a
+          >
+          <a
+            href="{% url 'edit_task' task_id=task.id %}"
+            class="btn btn-warning"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-pencil-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+              /></svg
+            > Edit</a
+          >
+          <a
+            href="{% url 'delete_task' task_id=task.id %}"
+            class="btn btn-danger"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-circle-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+              />
+            </svg>
+             Delete</a
+          >
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
-</div>
-
-<div class="card-deck">
-  {% for task in tasks %}
-  <div class="card">
-    <img
-      class="card-img-top h-100 d-flex align-items-center"
-      src="{{ task.image.url }}"
-      alt="Card image cap"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ task.task_name }}</h5>
-      <p class="card-text">{{ task.task_desc }}</p>
-      <a href="#" class="btn btn-primary">View</a>
-      <a href="#" class="btn btn-warning">Edit</a>
-      <a href="#" class="btn btn-danger">Delete</a>
-    </div>
-  </div>
-  {% endfor %}
 </div>
 
 {% endblock content %}

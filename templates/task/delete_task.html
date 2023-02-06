@@ -1,0 +1,12 @@
+{% extends 'inc/nav.html' %} {% load static %} {% block content %}
+<div class="mt-4 text-center">
+  <h6  class="mb-3">
+    Are you sure you want to delete the task '{{ task.task_name }}'?
+  </h6>
+  <form method="POST" action="{% url 'delete_task' task.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a href="{% url 'task' %}" class="btn btn-success">Cancel</a>
+  </form>
+</div>
+{% endblock content %}

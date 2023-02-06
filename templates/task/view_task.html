@@ -1,0 +1,29 @@
+{% extends 'inc/nav.html' %} {% load static %} {% block content %}
+
+<div class="card shadow-sm text-center ">
+  <div class="card-header">
+    <h3 class="card-title">Task Detail</h3>
+  </div>
+  <div class="card-body p-0">
+    <div class="card-p mb-10">
+      <div class="px-4">
+        <img
+          class="mw-100 mh-300px card-rounded-bottom pb-4"
+          alt=""
+          src="{{ tasks.image.url }}"
+        />
+      </div>
+      <h6 class="card-subtitle mb-2 text-secondary font-weight-bold">
+        Task name: {{ tasks.task_name }}
+      </h6>
+      <h6 class="card-subtitle mb-2 text-secondary font-weight-bold">
+        Employee: {{ tasks.employee }}
+      </h6>
+      <p class="card-text text-secondary">Description: {{ tasks.task_desc}}</p>
+      <p class="card-text text-secondary">Start date: {{ tasks.start_date}}</p>
+      <p class="card-text text-secondary pb-4">End date: {{ tasks.end_date}}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
